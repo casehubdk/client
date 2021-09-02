@@ -32,10 +32,10 @@ rules_proto_toolchains()
 #     name = "scala_things",
 #     path = "../bazel-things",
 # )
-commit_sha = "004a1b5416f3a5152661572da927dc801bd0ee59"
+commit_sha = "8b562609ac3810cc7c9751f4e179385666942b5f"
 http_archive(
     name = "scala_things",
-    sha256 = "e16ae6a74577894d0895c7536b36b084233451f419aea28e860802cd8c299976",
+    # sha256 = "c135c6b13ed681baa21ec90c54762f1c72e1f7ceb82c6d6f3fef199936e59a1d",
     strip_prefix = "bazel-things-%s" % commit_sha,
     url = "https://github.com/valdemargr/bazel-things/archive/%s.zip" % commit_sha,
 )
@@ -44,9 +44,13 @@ load("@scala_things//:dependencies/init.bzl", "bazel_things_dependencies")
 
 bazel_things_dependencies()
 
+load("@rules_jvm_external//:repositories.bzl", "rules_jvm_external_deps")
+rules_jvm_external_deps()
+load("@rules_jvm_external//:setup.bzl", "rules_jvm_external_setup")
+rules_jvm_external_setup()
+
 load("//:dependencies.bzl", "project_deps", "scala_versions")
 load("@scala_things//:dependencies/dependencies.bzl", "install_dependencies", "to_string_version")
-
 
 install_dependencies(project_deps, scala_versions, use_pinned=True)
 load("@maven//:defs.bzl", "pinned_maven_install")
@@ -78,3 +82,4 @@ load("@io_bazel_rules_scala//testing:junit.bzl", "junit_repositories", "junit_to
 junit_repositories()
 
 junit_toolchain()
+

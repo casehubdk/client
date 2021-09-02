@@ -1,7 +1,16 @@
-load("@io_bazel_rules_scala//scala:scala.bzl", "scala_binary")
+load("@io_bazel_rules_scala//scala:scala.bzl", "scala_library",)
+load("@rules_jvm_external//:defs.bzl", "java_export")
 
-scala_binary(
-    name = "bin",
-    main_class = "your_project.Main",
-    # deps = ["//src/main/scala/your_project"],
+scala_library(
+    name = "src",
+    deps = ["//src/main/scala/casehub/client"],
 )
+
+java_export(
+    name = "client",
+    maven_coordinates = "io.github.casehubdk:client_2_13:1.0.0",
+    runtime_deps = [":src"],
+    srcs = glob(["**/*.scala"]),
+    pom_template = "//pom:pom.tpl",
+)
+
