@@ -8,7 +8,7 @@ scala_library(
 
 java_export(
     name = "client",
-    maven_coordinates = "io.github.casehubdk:client_2_13:2.0.0",
+    maven_coordinates = "io.github.casehubdk:client_2_13:4.0.0",
     runtime_deps = [":src"],
     pom_template = "//pom:pom.tpl",
 )
