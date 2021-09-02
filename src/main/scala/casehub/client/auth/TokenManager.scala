@@ -4,7 +4,6 @@ import org.http4s.client._
 import cats.effect._
 import cats.implicits._
 import java.time.Instant
-import java.util.concurrent.TimeUnit
 import java.time.temporal.ChronoUnit
 import org.http4s._
 import cats.data.Kleisli
@@ -28,7 +27,8 @@ object TokenManager {
           val refreshToken: F[AuthResponse] = {
             val respF = client.expect[AuthResponse](
               Request[F](
-                method = Method.GET
+                method = Method.GET,
+                uri = tokenUri
               ).withEntity(authParams)
             )
 

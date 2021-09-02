@@ -2,13 +2,9 @@ load("@io_bazel_rules_scala//scala:scala.bzl", "scala_library")
 load("@scala_things//:flags/flags.bzl", "flags")
 
 scala_library(
-    name = "client",
+    name = "base",
     srcs = glob(["*.scala"]),
     scalacopts = flags,
     visibility = ["//visibility:public"],
-    deps = [
-        "//src/main/scala/casehub/client/api/aml",
-        "//src/main/scala/casehub/client/api/base",
-        "//src/main/scala/casehub/client/auth",
-    ]
+    deps = ["@maven//:org_http4s_http4s_core_2_13"],
 )

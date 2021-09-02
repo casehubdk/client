@@ -1,0 +1,25 @@
+load("@io_bazel_rules_scala//scala:scala.bzl", "scala_library")
+load("@scala_things//:flags/flags.bzl", "flags")
+
+scala_library(
+    name = "auth",
+    srcs = glob(["*.scala"]),
+    scalacopts = flags,
+    visibility = ["//visibility:public"],
+    deps = [
+        "@maven//:org_http4s_http4s_core_2_13",
+        "@maven//:org_http4s_http4s_client_2_13",
+        "@maven//:org_http4s_http4s_circe_2_13",
+        "@maven//:org_http4s_http4s_jawn_2_13",
+        "@maven//:io_circe_circe_generic_extras_2_13",
+        "@maven//:io_circe_circe_generic_2_13",
+        "@maven//:io_circe_circe_core_2_13",
+        "@maven//:org_typelevel_cats_core_2_13",
+        "@maven//:org_typelevel_cats_kernel_2_13",
+        "@maven//:org_typelevel_cats_effect_2_13",
+        "@maven//:org_typelevel_cats_effect_kernel_2_13",
+        "@maven//:com_chuusai_shapeless_2_13",
+        "@maven//:co_fs2_fs2_core_2_13",
+        "@maven//:org_typelevel_vault_2_13",
+    ]
+)

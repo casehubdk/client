@@ -2,6 +2,7 @@ package casehub.client.auth
 
 import org.http4s.circe.jsonEncoderOf
 import org.http4s.EntityEncoder
+import io.circe.generic.extras.Configuration
 
 final case class AuthParams(
   audience: String,
@@ -12,6 +13,8 @@ final case class AuthParams(
 
 object AuthParams {
   import io.circe._
-  implicit val enc: Encoder[AuthParams] = io.circe.generic.semiauto.deriveEncoder[AuthParams]
+  implicit val cfg: Configuration = Configuration.default.withSnakeCaseMemberNames
+  @annotation.nowarn
+  implicit val enc: Encoder[AuthParams] = io.circe.generic.extras.semiauto.deriveConfiguredEncoder[AuthParams]
   implicit def eenc[F[_]]: EntityEncoder[F, AuthParams] = jsonEncoderOf[F, AuthParams]
 }

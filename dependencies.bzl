@@ -25,9 +25,12 @@ project_deps = [
     scala_dependency("io.circe", "circe-core", "0.14.1"),
     scala_dependency("io.circe", "circe-parser", "0.14.1"),
     scala_dependency("io.circe", "circe-generic", "0.14.1"),
+    scala_dependency("io.circe", "circe-generic-extras", "0.14.1"),
 
     scala_dependency("org.scalameta", "munit", "0.7.26"),
     scala_dependency("org.typelevel", "munit-cats-effect-3", "1.0.0"),
+
+    scala_dependency("io.chrisdavenport", "cats-time", "0.3.4"),
 ]
 
 def add_scala_fullver(s):
