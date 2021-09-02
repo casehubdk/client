@@ -1,0 +1,7 @@
+.terraform*
+.idea
+.ijwb
+bazel-*
+.bloop
+.metals
+*.iml
