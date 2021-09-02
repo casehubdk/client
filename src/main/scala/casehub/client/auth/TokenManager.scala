@@ -27,7 +27,7 @@ object TokenManager {
           val refreshToken: F[AuthResponse] = {
             val respF = client.expect[AuthResponse](
               Request[F](
-                method = Method.GET,
+                method = Method.POST,
                 uri = tokenUri
               ).withEntity(authParams)
             )

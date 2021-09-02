@@ -1,0 +1,33 @@
+load("@io_bazel_rules_scala//scala:scala.bzl", "scala_junit_test")
+load("@scala_things//:flags/flags.bzl", "flags", "unused_targets_ignored")
+
+scala_junit_test(
+    name = "client",
+    srcs = glob(["*.scala"]),
+    scalacopts = flags,
+    suffixes = ["Test"],
+    unused_dependency_checker_ignored_targets = unused_targets_ignored("2_13")["http4s_uri_macro"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//src/main/scala/casehub/client/auth",
+        "//src/main/scala/casehub/client/api/base",
+        "//src/main/scala/casehub/client/api/aml",
+        "@maven//:co_fs2_fs2_core_2_13",
+        "@maven//:com_comcast_ip4s_core_2_13",
+        "@maven//:org_http4s_http4s_client_2_13",
+        "@maven//:org_http4s_http4s_core_2_13",
+        "@maven//:org_http4s_http4s_jdk_http_client_2_13",
+        "@maven//:org_scalameta_munit_2_13",
+        "@maven//:org_typelevel_case_insensitive_2_13",
+        "@maven//:org_typelevel_cats_core_2_13",
+        "@maven//:org_typelevel_cats_effect_2_13",
+        "@maven//:org_typelevel_cats_effect_kernel_2_13",
+        "@maven//:org_typelevel_cats_effect_std_2_13",
+        "@maven//:org_typelevel_cats_kernel_2_13",
+        "@maven//:org_typelevel_cats_parse_2_13",
+        "@maven//:org_typelevel_literally_2_13",
+        "@maven//:org_typelevel_munit_cats_effect_3_2_13",
+        "@maven//:io_circe_circe_core_2_13",
+        "@maven//:io_circe_circe_generic_extras_2_13",
+    ],
+)
